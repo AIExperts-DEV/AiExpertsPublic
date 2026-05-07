@@ -43,6 +43,7 @@ ingress:
     originRequest:
       noTLSVerify: true
       connectTimeout: 30s
+      httpHostHeader: localhost
   - service: http_status:404
 "@
 
