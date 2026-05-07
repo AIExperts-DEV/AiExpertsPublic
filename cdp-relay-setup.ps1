@@ -81,10 +81,10 @@ Write-Host ""
 Write-Host "   cloudflared tunnel login" -ForegroundColor Yellow
 Write-Host "       (opens browser, click Authorize for crissie.com.au)"
 Write-Host ""
-Write-Host "   cloudflared tunnel create cat-cdp" -ForegroundColor Yellow
+Write-Host "   cloudflared tunnel create cdp" -ForegroundColor Yellow
 Write-Host "       (note the UUID it prints)"
 Write-Host ""
-Write-Host "   cloudflared tunnel route dns cat-cdp cat-cdp.crissie.com.au" -ForegroundColor Yellow
+Write-Host "   cloudflared tunnel route dns cdp cdp.crissie.com.au" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "When all three are done, run the second-half script:"
 Write-Host "   irm https://raw.githubusercontent.com/AIExperts-DEV/AiExpertsPublic/main/cdp-relay-finish.ps1 | iex" -ForegroundColor Cyan

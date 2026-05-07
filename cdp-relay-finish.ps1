@@ -25,7 +25,7 @@ $creds = Get-ChildItem $cfDir -Filter "*.json" |
 
 if (-not $creds) {
   Write-Host "No tunnel credentials found in $cfDir." -ForegroundColor Red
-  Write-Host "Run 'cloudflared tunnel create cat-cdp' first."
+  Write-Host "Run 'cloudflared tunnel create cdp' first."
   exit 1
 }
 
@@ -34,11 +34,11 @@ Write-Host "Using tunnel credentials: $($creds.FullName)" -ForegroundColor Green
 
 # Write config.yml
 $cfg = @"
-tunnel: cat-cdp
+tunnel: cdp
 credentials-file: $($creds.FullName)
 
 ingress:
-  - hostname: cat-cdp.crissie.com.au
+  - hostname: cdp.crissie.com.au
     service: http://localhost:9222
     originRequest:
       noTLSVerify: true
@@ -55,9 +55,9 @@ Get-Content $cfgPath | ForEach-Object { Write-Host "  $_" -ForegroundColor DarkG
 Write-Host ""
 Write-Host "===== running tunnel (foreground) =====" -ForegroundColor Cyan
 Write-Host "Leave this window open. Test from another machine:"
-Write-Host "   curl https://cat-cdp.crissie.com.au/json/version" -ForegroundColor Yellow
+Write-Host "   curl https://cdp.crissie.com.au/json/version" -ForegroundColor Yellow
 Write-Host ""
 Write-Host "(Ctrl+C to stop. Later we'll register it as a Windows service.)"
 Write-Host ""
 
-cloudflared tunnel run cat-cdp
+cloudflared tunnel run cdp
