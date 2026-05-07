@@ -27,13 +27,14 @@ if (-not $chrome) {
 
 Write-Host "Chrome found: $chrome" -ForegroundColor Green
 
-# 2. Verify cloudflared is installed
-$cloudflared = (Get-Command cloudflared -ErrorAction SilentlyContinue)?.Source
-if (-not $cloudflared) {
+# 2. Verify cloudflared is installed (PS 5.1-compatible — no null-conditional)
+$cloudflaredCmd = Get-Command cloudflared -ErrorAction SilentlyContinue
+if (-not $cloudflaredCmd) {
   Write-Host "cloudflared not in PATH." -ForegroundColor Red
   Write-Host "Install the Windows MSI from https://github.com/cloudflare/cloudflared/releases/latest"
   exit 1
 }
+$cloudflared = $cloudflaredCmd.Source
 Write-Host "cloudflared found: $cloudflared" -ForegroundColor Green
 
 # 3. Kill any stale Chrome/cloudflared from previous runs
