@@ -1,0 +1,3 @@
+#!/bin/sh
+# Secret scan before every commit. Enable once per clone: git config core.hooksPath .githooks
+exec node "$(git rev-parse --show-toplevel)/.githooks/secret-scan.js"
